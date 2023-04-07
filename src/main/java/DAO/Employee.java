@@ -1,18 +1,29 @@
 package DAO;
 
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+
+@EqualsAndHashCode(exclude = {"id"})
+
+@Entity
+
 public class Employee {
+    @Id
     private int id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     private String gender;
     private int age;
-    private City city;
+    @Column(name = "city_id")
+    private int city;
 
     public Employee() {
     }
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, City city) {
-        this.id = id;
+    public Employee(String firstName, String lastName, String gender, int age, int city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -60,11 +71,11 @@ public class Employee {
         this.age = age;
     }
 
-    public City getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
