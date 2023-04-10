@@ -15,6 +15,7 @@ public class HbSessionUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Employee.class);
+                configuration.addAnnotatedClass(City.class);
                 StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(registryBuilder.build());
             }catch (Exception e) {
