@@ -2,49 +2,48 @@ package DAO;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import java.util.List;
 
-public class EmployeeDAOImpl implements EmployeeDAO{
-
+public class CityDAOImpl implements CityDAO{
     @Override
-    public void addEmployee(Employee employee) {
+    public void addCity(City city) {
         try (Session session = HbSessionUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(employee);
+            session.save(city);
             transaction.commit();
         }
     }
 
     @Override
-    public Employee findById (int id) {
+    public City findById(int id) {
         try(Session session = HbSessionUtil.getSessionFactory().openSession()) {
-        return session.get(Employee.class, id);
+            return session.get(City.class, id);
         }
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<City> getAllCity() {
         try(Session session = HbSessionUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Employee").list();
+            return session.createQuery("FROM City ").list();
         }
     }
 
     @Override
-    public void updateEmployee(int id, Employee employee) {
+    public void updateCity(int id, City city) {
         try (Session session = HbSessionUtil.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
-            employee.setId(id);
-            session.update(employee);
+            city.setCity_Id(id);
+            session.update(city);
             transaction.commit();
         }
-
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
+    public void deleteCity(City city) {
         try (Session session = HbSessionUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete(employee);
+            session.delete(city);
             transaction.commit();
         }
     }
